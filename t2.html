@@ -1,0 +1,70 @@
+    <html>  
+    <head>  
+    <title> Login Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">  
+      function submit_form(){
+        var formData = JSON.stringify($("#my_form").serializeArray());
+        console.log(formData);
+	CSVFile = new Blob([formData], {type: "application/json"});
+	var temp_link = document.createElement('a');
+	// Download csv file
+    	temp_link.download = "GfG.json";
+    	var url = window.URL.createObjectURL(CSVFile);
+    	temp_link.href = url;
+	// This link should not be displayed
+    	temp_link.style.display = "none";
+    	document.body.appendChild(temp_link);
+	// Automatically click the link to trigger download
+    	temp_link.click();
+    	document.body.removeChild(temp_link);
+     }
+    </script>
+    <script type="text/javascript">
+     function create_form(){  
+       alert("signup successfully");  
+    } 
+    </script>
+    </head>  
+    <body>  
+    <h3>IGF project info</h3>  
+    <form id="my_form" name="my_form">  
+    <h4>Project Tag</h4>  
+    <input type="text" id="project_tag" name="project_tag" placeholder="Enter your unique project tag"/>  
+    <h4>Submitter name</h4> 
+    <input id="submitter_name" name="submitter_name" placeholder="Enter your name"/></br></br>
+    <h4>Email id</h4>
+    <input id="email_id" name="email_id" type="email" placeholder="Enter your email id"/>
+    <h4>Read settings</h4>
+    <h5>R1 read</h5>
+    <input id="r1_read" name="r1_read" type="number" min=75 max=300 />
+    <h5>R2 read</h5>
+    <input id="r2_read" name="r2_read" type="number" min=75 max=300 />
+    <h4>Index settings</h4>
+    <h5>I1 read</h5>
+    <input id="i1_read" name="i1_read" type="number" min=6 max=30 />
+    <h5>I1 UMI start position</h5>
+    <input id="i1_umi_position" name="i1_umi_position" type="number" min=1 max=30 />
+    <h5>I1 UMI length</h5>
+    <input id="i1_umi_length" name="i1_umi_length" type="number" min=1 max=30 />
+    <h5>I2 UMI start position</h5>
+    <input id="i2_umi_position" name="i2_umi_position" type="number" min=1 max=30 />
+    <h5>I2 UMI length</h5>
+    <input id="i2_umi_length" name="i2_umi_length" type="number" min=1 max=30 />
+    <h5>I2 read</h5>
+    <input id="i2_read" name="i2_read" type="number" min=6 max=30 />
+    <h4>Custom primer required</h4>
+    <div>
+      <input id="custom_primer_yes" name="custom_primer_yes" value="yes" type="checkbox" />
+      <label for="custom_primer_yes">Yes</label>
+    </div>
+    <h4>Dark cycles required</h4>
+    <div>
+      <input id="dark_cycles_yes" name="dark_cycles_yes" value="yes" type="checkbox" />
+      <label for="dark_cycles_yes">Yes</label>
+    </div>
+    </br></br>
+    <input type="submit" value="Get JSON" onClick="submit_form()"/>     
+    </form>
+    </body>
+    </html>  
